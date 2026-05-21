@@ -3,25 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Site com Menu Hambúrguer</title>
+    <title>Cabeçalho Responsivo</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <header class="header">
-        <a href="#" class="logo">MeuLogo</a>
+        <a href="#" class="logo">MeuSite</a>
         
-        <button class="hamburger" aria-label="Abrir Menu">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-        </button>
+        <!-- Menu para Computador (Desktop) e Celular -->
+        <nav class="nav">
+            <button class="hamburger" aria-label="Abrir menu" aria-haspopup="true" aria-expanded="false">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
 
-        <nav class="nav-menu">
-            <a href="#" class="nav-link">Início</a>
-            <a href="#" class="nav-link">Sobre</a>
-            <a href="#" class="nav-link">Serviços</a>
-            <a href="#" class="nav-link">Contato</a>
+            <ul class="nav-list">
+                <li><a href="#" class="nav-link">Início</a></li>
+                <li><a href="#" class="nav-link">Sobre</a></li>
+                <li><a href="#" class="nav-link">Serviços</a></li>
+                <li><a href="#" class="nav-link">Contato</a></li>
+            </ul>
         </nav>
     </header>
 

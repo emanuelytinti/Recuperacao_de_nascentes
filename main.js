@@ -1,13 +1,23 @@
-const hamburger = document.querySelector(".hamburger");
-const navMenu = document.querySelector(".nav-menu");
+const hamburger = document.querySelector('.hamburger');
+const navList = document.querySelector('.nav-list');
+const navLinks = document.querySelectorAll('.nav-link');
 
-hamburger.addEventListener("click", () => {
-    hamburger.classList.toggle("active");
-    navMenu.classList.toggle("active");
+// Função que alterna as classes active/open
+function toggleMenu() {
+    const isOpen = hamburger.classList.toggle('open');
+    navList.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', isOpen);
+}
+
+// Abre/fecha ao clicar no botão hambúrguer
+hamburger.addEventListener('click', toggleMenu);
+
+// Fecha o menu automaticamente ao clicar em qualquer link (ideal para páginas únicas)
+navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        navList.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+    });
 });
 
-// Opcional: Fecha o menu ao clicar em qualquer link
-document.querySelectorAll(".nav-link").forEach(n => n.addEventListener("click", () => {
-    hamburger.classList.remove("active");
-    navMenu.classList.remove("active");
-}));

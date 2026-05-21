@@ -1,102 +1,107 @@
-/* Configurações Globais */
+/* Reset Básico */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Estilo do Cabeçalho */
+/* Estrutura do Cabeçalho */
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 2rem;
-    background-color: #333;
-    color: white;
+    padding: 1rem 5%;
+    background-color: #1a1a1a;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
 .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: white;
+    color: #fff;
+    font-size: 1.6rem;
+    font-weight: 700;
     text-decoration: none;
 }
 
-.nav-menu {
+/* Menu Versão Desktop (Padrão) */
+.nav-list {
     display: flex;
+    list-style: none;
     gap: 2rem;
 }
 
 .nav-link {
-    color: white;
+    color: #e0e0e0;
     text-decoration: none;
-    font-size: 1rem;
-    transition: color 0.3s;
+    font-size: 1.05rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
 }
 
 .nav-link:hover {
-    color: #00bcd4;
+    color: #4da6ff;
 }
 
-/* Botão Hambúrguer (Escondido no Desktop) */
+/* Esconde o Botão Hambúrguer no Desktop */
 .hamburger {
     display: none;
-    cursor: pointer;
     background: none;
     border: none;
+    cursor: pointer;
     flex-direction: column;
-    gap: 5px;
+    gap: 6px;
 }
 
 .bar {
-    width: 25px;
+    width: 28px;
     height: 3px;
-    background-color: white;
-    transition: all 0.3s ease;
+    background-color: #fff;
+    transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-/* Estilos Responsivos (Telas até 768px) */
+/* --- Responsividade: Telas até 768px (Celulares e Tablets) --- */
 @media (max-width: 768px) {
     .hamburger {
-        display: flex;
+        display: flex; /* Exibe o botão */
+        position: relative;
+        z-index: 10;
     }
 
-    .nav-menu {
-        position: absolute;
-        top: 60px;
+    /* Transforma a lista em menu vertical escondido na lateral */
+    .nav-list {
+        position: fixed;
+        top: 0;
         right: -100%;
+        width: 70%;
+        height: 100vh;
+        background-color: #222;
         flex-direction: column;
-        background-color: #333;
-        width: 100%;
-        text-align: center;
-        gap: 0;
-        transition: 0.3s ease;
-        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+        justify-content: center;
+        align-items: center;
+        gap: 3rem;
+        transition: right 0.4s ease-in-out;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.3);
     }
 
     .nav-link {
-        padding: 1.5rem;
-        display: block;
-        border-bottom: 1px solid #444;
+        font-size: 1.4rem;
     }
 
-    /* Classe ativada via JavaScript */
-    .nav-menu.active {
+    /* Classe ativada por JavaScript para abrir o menu */
+    .nav-list.open {
         right: 0;
     }
 
-    /* Animação do Hambúrguer virando um 'X' */
-    .hamburger.active .bar:nth-child(1) {
-        transform: translateY(8px) rotate(45deg);
+    /* Animação das barras virando um 'X' */
+    .hamburger.open .bar:nth-child(1) {
+        transform: translateY(9px) rotate(45deg);
     }
 
-    .hamburger.active .bar:nth-child(2) {
+    .hamburger.open .bar:nth-child(2) {
         opacity: 0;
     }
 
-    .hamburger.active .bar:nth-child(3) {
-        transform: translateY(-8px) rotate(-45deg);
+    .hamburger.open .bar:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
     }
 }
-
