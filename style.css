@@ -1,4 +1,4 @@
-/* Reset Básico */
+/* Configurações Gerais */
 * {
     margin: 0;
     padding: 0;
@@ -6,48 +6,84 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+body {
+    background-color: #f4f9f4;
+}
+
 /* Estrutura do Cabeçalho */
 .header {
+    background-color: #ffffff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 5%;
-    background-color: #f17ec1;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
+/* Logo */
 .logo {
-    color: #fff;
-    font-size: 1.6rem;
-    font-weight: 700;
+    font-size: 24px;
+    font-weight: bold;
+    color: #1b4332;
     text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
-/* Menu Versão Desktop (Padrão) */
-.nav-list {
+.logo span {
+    color: #2d6a4f;
+}
+
+/* Links de Navegação (Desktop) */
+.nav-menu {
     display: flex;
-    list-style: none;
-    gap: 2rem;
+    align-items: center;
+    gap: 30px;
 }
 
 .nav-link {
-    color: #e0e0e0;
+    color: #40916c;
     text-decoration: none;
-    font-size: 1.05rem;
     font-weight: 500;
     transition: color 0.3s ease;
 }
 
 .nav-link:hover {
-    color: hsl(313, 100%, 79%);
+    color: #1b4332;
 }
 
-/* Esconde o Botão Hambúrguer no Desktop */
+/* Botão de Destaque */
+.btn-contato {
+    background-color: #2d6a4f;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.btn-contato:hover {
+    background-color: #1b4332;
+}
+
+/* Botão Hambúrguer (Escondido no Desktop) */
 .hamburger {
     display: none;
+    cursor: pointer;
     background: none;
     border: none;
-    cursor: pointer;
     flex-direction: column;
     gap: 6px;
 }
@@ -55,53 +91,53 @@
 .bar {
     width: 28px;
     height: 3px;
-    background-color: #ff7da9;
-    transition: transform 0.3s ease, opacity 0.3s ease;
+    background-color: #2d6a4f;
+    border-radius: 2px;
+    transition: all 0.3s ease;
 }
 
-/* --- Responsividade: Telas até 768px (Celulares e Tablets) --- */
+/* Responsividade (Telas de até 768px) */
 @media (max-width: 768px) {
     .hamburger {
-        display: flex; /* Exibe o botão */
-        position: relative;
-        z-index: 10;
+        display: flex;
     }
 
-    /* Transforma a lista em menu vertical escondido na lateral */
-    .nav-list {
+    .nav-menu {
         position: fixed;
-        top: 0;
+        top: 70px;
         right: -100%;
-        width: 70%;
-        height: 100vh;
-        background-color: #ffa4d6;
+        width: 80px; /* Largura do menu lateral */
+        min-width: 250px;
+        height: calc(100vh - 70px);
+        background-color: #ffffff;
         flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 3rem;
-        transition: right 0.4s ease-in-out;
-        box-shadow: -5px 0 15px rgba(0,0,0,0.3);
+        align-items: flex-start;
+        padding: 40px 30px;
+        gap: 25px;
+        box-shadow: -5px 5px 15px rgba(0, 0, 0, 0.05);
+        transition: right 0.4s ease;
     }
 
-    .nav-link {
-        font-size: 1.4rem;
-    }
-
-    /* Classe ativada por JavaScript para abrir o menu */
-    .nav-list.open {
+    /* Quando o menu estiver ativo */
+    .nav-menu.active {
         right: 0;
     }
 
-    /* Animação das barras virando um 'X' */
-    .hamburger.open .bar:nth-child(1) {
+    .btn-contato {
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Animação do X no Hambúrguer */
+    .hamburger.active .bar:nth-child(1) {
         transform: translateY(9px) rotate(45deg);
     }
 
-    .hamburger.open .bar:nth-child(2) {
+    .hamburger.active .bar:nth-child(2) {
         opacity: 0;
     }
 
-    .hamburger.open .bar:nth-child(3) {
+    .hamburger.active .bar:nth-child(3) {
         transform: translateY(-9px) rotate(-45deg);
     }
 }
