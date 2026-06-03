@@ -1,84 +1,141 @@
-/* Configurações Gerais */
+/* Configurações Gerais e Variáveis */
+:root {
+    --primary: #2d6a4f;
+    --primary-dark: #1b4332;
+    --primary-light: #52b788;
+    --text-main: #2b3a32;
+    --text-muted: #52635a;
+    --bg-main: #f4f9f4;
+    --bg-white: #ffffff;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Inter', sans-serif;
 }
 
 body {
-    background-color: #f4f9f4;
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    -webkit-font-smoothing: antialiased;
 }
 
-/* Estrutura do Cabeçalho */
+/* Estrutura do Cabeçalho com Efeito de Vidro */
 .header {
-    background-color: #ffffff;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     position: fixed;
     width: 100%;
     top: 0;
     left: 0;
     z-index: 1000;
+    transition: var(--transition);
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 15px 20px;
+    padding: 18px 24px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-/* Logo */
+/* Logo Estilizada */
 .logo {
-    font-size: 24px;
-    font-weight: bold;
-    color: #1b4332;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--primary-dark);
     text-decoration: none;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
+    letter-spacing: -0.5px;
 }
 
-.logo span {
-    color: #2d6a4f;
+.logo .icon {
+    font-size: 24px;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover .icon {
+    transform: scale(1.15) rotate(10deg);
+}
+
+.logo .highlight {
+    color: var(--primary);
 }
 
 /* Links de Navegação (Desktop) */
 .nav-menu {
     display: flex;
     align-items: center;
-    gap: 30px;
+    gap: 32px;
 }
 
 .nav-link {
-    color: #40916c;
+    color: var(--text-muted);
     text-decoration: none;
     font-weight: 500;
-    transition: color 0.3s ease;
+    font-size: 15px;
+    position: relative;
+    padding: 4px 0;
+    transition: var(--transition);
 }
 
 .nav-link:hover {
-    color: #1b4332;
+    color: var(--primary-dark);
+}
+
+/* Linha animada sob o link */
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--primary);
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+
+.nav-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
 }
 
 /* Botão de Destaque */
 .btn-contato {
-    background-color: #2d6a4f;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 25px;
+    background-color: var(--primary);
+    color: var(--bg-white);
+    padding: 12px 24px;
+    border-radius: 50px;
     text-decoration: none;
     font-weight: 600;
-    transition: background-color 0.3s ease;
+    font-size: 14px;
+    box-shadow: 0 4px 14px rgba(45, 106, 79, 0.2);
+    transition: var(--transition);
 }
 
 .btn-contato:hover {
-    background-color: #1b4332;
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(27, 67, 50, 0.3);
 }
 
-/* Botão Hambúrguer (Escondido no Desktop) */
+.btn-contato:active {
+    transform: translateY(0);
+}
+
+/* Botão Hambúrguer Moderno */
 .hamburger {
     display: none;
     cursor: pointer;
@@ -86,17 +143,24 @@ body {
     border: none;
     flex-direction: column;
     gap: 6px;
+    padding: 8px;
+    border-radius: 8px;
+    transition: var(--transition);
+}
+
+.hamburger:hover {
+    background-color: rgba(0, 0, 0, 0.05);
 }
 
 .bar {
-    width: 28px;
-    height: 3px;
-    background-color: #2d6a4f;
-    border-radius: 2px;
-    transition: all 0.3s ease;
+    width: 24px;
+    height: 2px;
+    background-color: var(--primary-dark);
+    border-radius: 4px;
+    transition: var(--transition);
 }
 
-/* Responsividade (Telas de até 768px) */
+/* Responsividade (Telas Mobile/Tablet) */
 @media (max-width: 768px) {
     .hamburger {
         display: flex;
@@ -104,40 +168,50 @@ body {
 
     .nav-menu {
         position: fixed;
-        top: 70px;
+        top: 0;
         right: -100%;
-        width: 80px; /* Largura do menu lateral */
-        min-width: 250px;
-        height: calc(100vh - 70px);
-        background-color: #ffffff;
+        width: 280px;
+        height: 100vh;
+        background-color: var(--bg-white);
         flex-direction: column;
         align-items: flex-start;
-        padding: 40px 30px;
-        gap: 25px;
-        box-shadow: -5px 5px 15px rgba(0, 0, 0, 0.05);
-        transition: right 0.4s ease;
+        justify-content: flex-start;
+        padding: 100px 40px;
+        gap: 30px;
+        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.05);
+        transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    /* Quando o menu estiver ativo */
     .nav-menu.active {
         right: 0;
+    }
+
+    .nav-link {
+        font-size: 18px;
+        width: 100%;
+    }
+
+    .nav-link::after {
+        display: none; /* Remove a linha animada no mobile */
     }
 
     .btn-contato {
         width: 100%;
         text-align: center;
+        margin-top: 10px;
     }
 
-    /* Animação do X no Hambúrguer */
+    /* Transformação do Hambúrguer em X */
     .hamburger.active .bar:nth-child(1) {
-        transform: translateY(9px) rotate(45deg);
+        transform: translateY(8px) rotate(45deg);
     }
 
     .hamburger.active .bar:nth-child(2) {
         opacity: 0;
+        transform: translateX(-10px);
     }
 
     .hamburger.active .bar:nth-child(3) {
-        transform: translateY(-9px) rotate(-45deg);
+        transform: translateY(-8px) rotate(-45deg);
     }
 }
