@@ -1,10 +1,10 @@
 /* Configurações Gerais e Variáveis */
 :root {
-    --primary: #2d6a4f;
-    --primary-dark: #1b4332;
-    --primary-light: #52b788;
-    --text-main: #2b3a32;
-    --text-muted: #52635a;
+    --primary: #4270f0;
+    --primary-dark: #130b85;
+    --primary-light: #a4c1eb;
+    --text-main: #00357a;
+    --text-muted: #6899d8;
     --bg-main: #f4f9f4;
     --bg-white: #ffffff;
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
